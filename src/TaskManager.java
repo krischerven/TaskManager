@@ -17,7 +17,7 @@ public class TaskManager {
 		while (first || vd.getYesNo(sc)) {
 			first = false;
 			System.out.println("Welcome to the Task Manager! What do you want to do today?\n");
-			System.out.println("1. List tasks\n2. Add task\n3. Delete task\n4. Mark task as complete\n5. Quit");
+			System.out.println("1. List tasks\n2. Add task\n3. Delete task\n4. Mark task as complete\n5. Quit\n");
 			System.out.println("Please select one of the above options:");
 			switch (vd.getChoice(sc, 1, 5)) {
 				case 1: {

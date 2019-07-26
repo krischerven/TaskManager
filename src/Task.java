@@ -1,4 +1,3 @@
-
 public class Task {
 	final String TAB = "      ";
 	private boolean completed;
