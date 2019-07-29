@@ -45,13 +45,13 @@ public class TaskManager {
 				case 3: {
 					if (tasks.size() > 0) {
 						System.out.println("Delete which task? (0 to cancel)");
-						int index = vd.getChoiceZero(sc, 1, tasks.size()+1);
-						if (index > 0) {
-							System.out.println(tasks.get(index-1));
+						int choice = vd.getChoiceZero(sc, 1, tasks.size()+1);
+						if (choice > 0) {
+							System.out.println(tasks.get(choice-1));
 							System.out.println("Are you sure you want to delete this task?");
 							if (vd.getYesNo(sc)) {
-								tasks.remove(index-1);
-								System.out.println("Successfully deleted task #"+index);
+								tasks.remove(choice-1);
+								System.out.println("Successfully deleted task #"+choice);
 							} else {
 								System.out.println("Operation aborted.");
 							}
@@ -64,13 +64,13 @@ public class TaskManager {
 				case 4: {
 					if (tasks.size() > 0) {
 						System.out.println("Mark which task as complete? (0 to cancel)");
-						int index = vd.getChoiceZero(sc, 1, tasks.size()+1);
-						if (index > 0) {
-							System.out.println(tasks.get(index-1));
+						int choice = vd.getChoiceZero(sc, 1, tasks.size()+1);
+						if (choice > 0) {
+							System.out.println(tasks.get(choice-1));
 							System.out.println("Are you sure you want to mark this task as complete?");
 							if (vd.getYesNo(sc)) {
-								tasks.get(index-1).setCompleted(true);
-								System.out.println("Successfully marked task #"+index + " as complete.");
+								tasks.get(choice-1).setCompleted(true);
+								System.out.println("Successfully marked task #"+choice + " as complete.");
 							} else {
 								System.out.println("Operation aborted.");
 							}
