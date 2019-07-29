@@ -12,6 +12,17 @@ public class Task {
 		desc = _desc;
 		due = _due;
 	}
+	public static Task From(String line) {
+		String[] split = line.split(":");
+		Task ret = new Task(split[0], split[1], split[2]);
+		if (split[3].equals("true")) {
+			ret.setCompleted(true);
+		}
+		return ret;
+	}
+	public String Parse() {
+		return name + ":" + desc + ":" + due + ":" + (completed ? "true" : "false");
+	}
 	public boolean getCompleted() {
 		return completed;
 	}
@@ -43,4 +54,3 @@ public class Task {
 		return ret1 + "\n\n" + ret2 + "\n";
 	}
 }
-

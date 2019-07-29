@@ -1,10 +1,59 @@
 import java.util.Vector;
 import java.util.Scanner;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
+import java.io.IOException;
 
 public class TaskManager {
-	
-	private static void sayGoodbye() {
+
+	private static void finish(Vector<Task> tasks) {
+		saveData(tasks);
 		System.out.println("Goodbye.");
+	}
+
+	private static void loadData(Vector<Task> tasks) {
+		// objects (immutable)
+		Scanner sc;
+		try {
+			sc = new Scanner(new FileReader(System.getProperty("user.dir")+"/src/tasks"));
+		} catch (FileNotFoundException e) {
+			try {
+				sc = new Scanner(new FileReader(System.getProperty("user.dir")+"/tasks"));
+			} catch (FileNotFoundException ee) {
+				System.out.println("Tasks savefile (src/tasks) not found.");
+				return;
+			}
+		}
+		while (sc.hasNextLine()) {
+			tasks.add(Task.From(sc.nextLine()));
+		}
+		sc.close();
+	}
+
+	private static void saveData(Vector<Task> tasks) {
+		FileWriter f;
+		try {
+			f = new FileWriter(System.getProperty("user.dir")+"/tasks");
+		} catch (IOException e) {
+			System.out.println("Failed to save src/tasks.");
+			return;
+		}
+		for (Task task : tasks) {
+			try {
+				f.write(task.Parse()+"\n");
+			} catch (IOException e) {
+				System.out.println("Failed to save src/tasks.");
+				return;
+			}
+		}
+		try {
+			f.close();
+		} catch (IOException e) {
+			System.out.println("Failed to save src/tasks.");
+			return;
+		}
 	}
 
 	public static void main(String[] args) {
@@ -12,6 +61,8 @@ public class TaskManager {
 		final Vector<Task> tasks = new Vector<>();
 		final Scanner sc = new Scanner(System.in);
 		final Validator vd = new Validator();
+		// load initial tasks
+		loadData(tasks);
 		// logic
 		boolean first = true;
 		while (first || vd.getYesNo(sc)) {
@@ -83,7 +134,7 @@ public class TaskManager {
 				case 5: {
 					System.out.println("Are you sure you want to quit Task Manager? (y/n)");
 					if (vd.getYesNo(sc)) {
-						sayGoodbye();
+						finish(tasks);
 						return;
 					} else {
 						break;
@@ -92,6 +143,6 @@ public class TaskManager {
 			}
 			System.out.println("Continue? (y/n)");
 		}
-		sayGoodbye();
+		finish(tasks);
 	}
 }
