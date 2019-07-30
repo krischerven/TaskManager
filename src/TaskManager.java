@@ -95,7 +95,7 @@ public class TaskManager {
 					String option = "ERROR";
 					if (tmp == -1) {
 						option = "CANCEL";
-						System.out.println("Cancelled.");
+						System.out.println("Operation aborted.");
 					} else if (tmp == names.size()) {
 						option = "YES";
 					} else {
