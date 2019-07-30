@@ -55,7 +55,7 @@ public class Validator {
 		}
 	}
 	
-	public boolean getYesNo(Scanner sc) {
+	public boolean confirm(Scanner sc) {
 		while (true) {
 			String line = sc.nextLine().toLowerCase().trim();
 			if (line.equals("y") || line.equals("yes")) {

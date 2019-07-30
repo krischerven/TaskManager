@@ -66,7 +66,7 @@ public class TaskManager {
 		loadData(tasks);
 		// logic
 		boolean first = true;
-		while (first || vd.getYesNo(sc)) {
+		while (first || vd.confirm(sc)) {
 			first = false;
 			System.out.println("Welcome to the Task Manager! What do you want to do today?\n");
 			System.out.println("1. List tasks\n2. Add task\n3. Delete task\n4. Mark task as complete\n5. Quit\n");
@@ -136,7 +136,7 @@ public class TaskManager {
 						if (choice > 0) {
 							System.out.println(tasks.get(choice-1));
 							System.out.println("Are you sure you want to delete this task?");
-							if (vd.getYesNo(sc)) {
+							if (vd.confirm(sc)) {
 								tasks.remove(choice-1);
 								System.out.println("Successfully deleted task #"+choice);
 							} else {
@@ -155,7 +155,7 @@ public class TaskManager {
 						if (choice > 0) {
 							System.out.println(tasks.get(choice-1));
 							System.out.println("Are you sure you want to mark this task as complete?");
-							if (vd.getYesNo(sc)) {
+							if (vd.confirm(sc)) {
 								tasks.get(choice-1).setCompleted(true);
 								System.out.println("Successfully marked task #"+choice + " as complete.");
 							} else {
@@ -169,7 +169,7 @@ public class TaskManager {
 				}
 				case 5: {
 					System.out.println("Are you sure you want to quit Task Manager? (y/n)");
-					if (vd.getYesNo(sc)) {
+					if (vd.confirm(sc)) {
 						finish(tasks);
 						return;
 					} else {
