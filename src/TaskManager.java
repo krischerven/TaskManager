@@ -176,6 +176,7 @@ public class TaskManager {
 						try {
 							task = tasks.get(vd.getChoiceZero(sc, 1, tasks.size())-1);
 						} catch (ArrayIndexOutOfBoundsException e) {
+							System.out.println("Operation aborted.");
 							break;
 						}
 
