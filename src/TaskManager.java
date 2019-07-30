@@ -88,7 +88,7 @@ public class TaskManager {
 						options += "\n";
 					}
 
-					options += "  " + (names.size()+1) + ". " + "Everyone" + "\n";
+					options += "  " + (names.size()+1) + ". " + "All Tasks" + "\n";
 					System.out.println("Would you like to select a specific task member or view all tasks?");
 					
 					int tmp = vd.getChoicePrompt(sc, 1, names.size()+1, "\nSelect an option:\n" + options)-1;
