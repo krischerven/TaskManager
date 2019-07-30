@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
+import java.util.ArrayList;
 import java.io.IOException;
 
 public class TaskManager {
@@ -72,9 +73,39 @@ public class TaskManager {
 			System.out.println("Please select one of the above options:");
 			switch (vd.getChoice(sc, 1, 5)) {
 				case 1: {
+
+					// choose a specific task member if you want
+					ArrayList<String> names = new ArrayList<>();
+					for (Task task : tasks) {
+						if (!names.contains(task.getName())) {
+							names.add(task.getName());
+						}
+					}
+
+					String options = "";
+					for (int i = 0; i < names.size(); ++i) {
+						options += "  " + (i+1) + ". " + names.get(i);
+						options += "\n";
+					}
+
+					options += "  " + (names.size()+1) + ". " + "Everyone" + "\n";
+					System.out.println("Would you like to select a specific task member or view all tasks?");
+					System.out.println("\nSelect an option:\n" + options);
+					
+					int tmp = vd.getChoice(sc, 1, names.size()+1)-1;
+					String option = "ERROR";
+					if (tmp == names.size()) {
+						option = "YES";
+					} else {
+						option = names.get(tmp);
+					}
+
+					// main logic
 					if (tasks.size() > 0) {
 						for (int i = 0; i < tasks.size(); ++i) {
-							System.out.println((i+1) + ". " + tasks.get(i).toString());
+							if (option == "YES" || tasks.get(i).getName() == option) {
+								System.out.println((i+1) + ". " + tasks.get(i).toString());
+							}
 						}
 					} else {
 						System.out.println("No tasks to list.");
