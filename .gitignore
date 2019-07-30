@@ -15,5 +15,6 @@
 log/
 target/
 
+src/tasks
 *.class
 /bin
