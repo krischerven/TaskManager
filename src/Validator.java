@@ -17,6 +17,24 @@ public class Validator {
 			}
 		}
 	}
+
+	public int getChoicePrompt(Scanner sc, int min, int max, String prompt) {
+		while (true) {
+			System.out.println(prompt);
+			if (sc.hasNextInt()) {
+				int test = sc.nextInt();
+				sc.nextLine(); // garbage
+				if (test >= min && test <= max) {
+					return test;
+				} else {
+					System.err.println("Error: out of range.");
+				}
+			} else {
+				System.err.println("Error: not a valid integer.");
+				sc.nextLine(); // prevents infinite loops
+			}
+		}
+	}
 	
 	public int getChoiceZero(Scanner sc, int min, int max) {
 		while (true) {
