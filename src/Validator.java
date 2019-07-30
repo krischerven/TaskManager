@@ -54,6 +54,11 @@ public class Validator {
 			}
 		}
 	}
+
+	// this is pointless but its pretty
+	public String getString(Scanner sc) {
+		return sc.nextLine();
+	}
 	
 	public boolean confirm(Scanner sc) {
 		while (true) {
@@ -64,6 +69,19 @@ public class Validator {
 				return false;
 			} else {
 				System.err.println("Please input y/n to continue.");
+			}
+		}
+	}
+
+	public boolean confirm2(Scanner sc) {
+		while (true) {
+			String line = sc.nextLine().toLowerCase().trim();
+			if (line.equals("y") || line.equals("yes")) {
+				return true;
+			} else if (line.equals("n") || line.equals("no")) {
+				return false;
+			} else {
+				System.err.println("Please input yes/no to continue.");
 			}
 		}
 	}

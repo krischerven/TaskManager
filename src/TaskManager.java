@@ -69,9 +69,9 @@ public class TaskManager {
 		while (first || vd.confirm(sc)) {
 			first = false;
 			System.out.println("Welcome to the Task Manager! What do you want to do today?\n");
-			System.out.println("1. List tasks\n2. Add task\n3. Delete task\n4. Mark task as complete\n5. Quit\n");
+			System.out.println("1. List tasks\n2. Add task\n3. Delete task\n4. Mark task as complete\n5. Modify existing task\n6. Quit\n");
 			System.out.println("Please select one of the above options:");
-			switch (vd.getChoice(sc, 1, 5)) {
+			switch (vd.getChoice(sc, 1, 6)) {
 				case 1: {
 
 					// choose a specific task member if you want
@@ -168,6 +168,35 @@ public class TaskManager {
 					break;
 				}
 				case 5: {
+					System.out.println("Which task wouild you like to edit? (1 - " + tasks.size() + ", 0 to cancel)");
+					
+					Task task;
+					try {
+						task = tasks.get(vd.getChoiceZero(sc, 1, tasks.size())-1);
+					} catch (ArrayIndexOutOfBoundsException e) {
+						break;
+					}
+
+					System.out.println(task);
+					System.out.println("What do you want to set this task's team member name to?");
+					String name = vd.getString(sc);
+
+					System.out.println("What do you want to set this task's description to?");
+					String desc = vd.getString(sc);
+
+					System.out.println("What do you want to set this task's due date to?");
+					String due = vd.getString(sc);
+
+					System.out.println("What do you want to set this task's completed status to (yes/no)?");
+					task.setCompleted(vd.confirm2(sc));
+					
+					task.setName(name);
+					task.setDesc(desc);
+					task.setDue(due);
+					break;
+				
+				}
+				case 6: {
 					System.out.println("Are you sure you want to quit Task Manager? (y/n)");
 					if (vd.confirm(sc)) {
 						finish(tasks);
