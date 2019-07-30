@@ -82,7 +82,7 @@ public class TaskManager {
 						}
 					}
 
-					String options = "";
+					String options = "  0. Cancel\n";
 					for (int i = 0; i < names.size(); ++i) {
 						options += "  " + (i+1) + ". " + names.get(i);
 						options += "\n";
@@ -91,24 +91,30 @@ public class TaskManager {
 					options += "  " + (names.size()+1) + ". " + "All Tasks" + "\n";
 					System.out.println("Would you like to select a specific task member or view all tasks?");
 					
-					int tmp = vd.getChoicePrompt(sc, 1, names.size()+1, "\nSelect an option:\n" + options)-1;
+					int tmp = vd.getChoicePrompt(sc, 0, names.size()+1, "\nSelect an option:\n" + options)-1;
 					String option = "ERROR";
-					if (tmp == names.size()) {
+					if (tmp == -1) {
+						option = "CANCEL";
+						System.out.println("Cancelled.");
+					} else if (tmp == names.size()) {
 						option = "YES";
 					} else {
 						option = names.get(tmp);
 					}
 
 					// main logic
-					if (tasks.size() > 0) {
-						for (int i = 0; i < tasks.size(); ++i) {
-							if (option == "YES" || tasks.get(i).getName() == option) {
-								System.out.println((i+1) + ". " + tasks.get(i).toString());
+					if (option != "CANCEL") {
+						if (tasks.size() > 0) {
+							for (int i = 0; i < tasks.size(); ++i) {
+								if (option == "YES" || tasks.get(i).getName() == option) {
+									System.out.println((i+1) + ". " + tasks.get(i).toString());
+								}
 							}
+						} else {
+							System.out.println("No tasks to list.");
 						}
-					} else {
-						System.out.println("No tasks to list.");
 					}
+
 					break;
 				}
 				case 2: {
