@@ -107,7 +107,7 @@ public class TaskManager {
 						if (tasks.size() > 0) {
 							for (int i = 0; i < tasks.size(); ++i) {
 								if (option == "YES" || tasks.get(i).getName() == option) {
-									System.out.println((i+1) + ". " + tasks.get(i).toString());
+									System.out.println((i+1) + ". " + tasks.get(i));
 								}
 							}
 						} else {
@@ -168,6 +168,7 @@ public class TaskManager {
 					break;
 				}
 				case 5: {
+
 					System.out.println("Which task wouild you like to edit? (1 - " + tasks.size() + ", 0 to cancel)");
 					
 					Task task;
@@ -189,7 +190,7 @@ public class TaskManager {
 
 					System.out.println("What do you want to set this task's completed status to (yes/no)?");
 					task.setCompleted(vd.confirm2(sc));
-					
+
 					task.setName(name);
 					task.setDesc(desc);
 					task.setDue(due);
