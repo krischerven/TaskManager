@@ -169,31 +169,35 @@ public class TaskManager {
 				}
 				case 5: {
 
-					System.out.println("Which task wouild you like to edit? (1 - " + tasks.size() + ", 0 to cancel)");
-					
-					Task task;
-					try {
-						task = tasks.get(vd.getChoiceZero(sc, 1, tasks.size())-1);
-					} catch (ArrayIndexOutOfBoundsException e) {
-						break;
+					if (tasks.size() > 0) {
+						System.out.println("Which task wouild you like to edit? (1 - " + tasks.size() + ", 0 to cancel)");
+						
+						Task task;
+						try {
+							task = tasks.get(vd.getChoiceZero(sc, 1, tasks.size())-1);
+						} catch (ArrayIndexOutOfBoundsException e) {
+							break;
+						}
+
+						System.out.println(task);
+						System.out.println("What do you want to set this task's team member name to?");
+						String name = vd.getString(sc);
+
+						System.out.println("What do you want to set this task's description to?");
+						String desc = vd.getString(sc);
+
+						System.out.println("What do you want to set this task's due date to?");
+						String due = vd.getString(sc);
+
+						System.out.println("What do you want to set this task's completed status to (yes/no)?");
+						task.setCompleted(vd.confirm2(sc));
+
+						task.setName(name);
+						task.setDesc(desc);
+						task.setDue(due);
+					} else {
+						System.out.println("No tasks to edit.");
 					}
-
-					System.out.println(task);
-					System.out.println("What do you want to set this task's team member name to?");
-					String name = vd.getString(sc);
-
-					System.out.println("What do you want to set this task's description to?");
-					String desc = vd.getString(sc);
-
-					System.out.println("What do you want to set this task's due date to?");
-					String due = vd.getString(sc);
-
-					System.out.println("What do you want to set this task's completed status to (yes/no)?");
-					task.setCompleted(vd.confirm2(sc));
-
-					task.setName(name);
-					task.setDesc(desc);
-					task.setDue(due);
 					break;
 				
 				}
